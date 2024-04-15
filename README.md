@@ -1,4 +1,4 @@
-# ALGORITHM-Projectusing System.Numerics;
+using System.Numerics;
 using System.Xml.Linq;
 using static System.Formats.Asn1.AsnWriter;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -142,6 +142,11 @@ namespace Library_Toala_Patel
                                         Console.Write("   Please Insert Author to search: ");
                                         vAuthor = ReadString();
                                         DisplayAllBooksByAuthor(vAuthor);
+                                        if (!booksFound)
+                                        {
+                                            Console.WriteLine("");
+                                            Console.WriteLine("    There are no books for the entered author!");
+                                        }
                                         Console.ReadLine();
                                         break;
                                     case 3:
@@ -303,10 +308,9 @@ namespace Library_Toala_Patel
                                             vBookID = ReadInteger();
                                             Console.Write("    Please enter book Quantity: ");
                                             int sQtty = ReadInteger();
-                                            Console.WriteLine("");
                                             if (BookExist(vBookID))
                                             {
-                                                Console.WriteLine("    Client Name : " + books[iDisplayBook].Name);
+                                                Console.WriteLine("    Book Name : " + books[iDisplayBook].Name);
                                                 Console.WriteLine("    Quantity Available : " + books[iDisplayBook].Quantity);
                                                 SellBook(vClientID, vBookID, sQtty);
                                             }
@@ -499,6 +503,7 @@ namespace Library_Toala_Patel
             return true;
         }
 
+        // Function that modify client data.
         static bool ModifyClient(int clientId, string name, string pass)
         {
             clients[iDisplayClient].FullName = name;
@@ -507,6 +512,7 @@ namespace Library_Toala_Patel
 
         }
 
+        // Function that inserts a new book
         static bool CreateBook(int bookId, string name, string author, int year, double price, int quantity)
         {
             books[iInsertBook].Id = bookId;
@@ -519,14 +525,15 @@ namespace Library_Toala_Patel
             iInsertBook = iInsertBook + 1;
             return true;
         }
+
         static bool ModifyBook(int bookId, string name, string author, int year, double price, int quantity)
         {
-            books[iInsertBook].Id = bookId;
-            books[iInsertBook].Name = name;
-            books[iInsertBook].Author = author;
-            books[iInsertBook].YearOfPublication = year;
-            books[iInsertBook].UnitPrice = price;
-            books[iInsertBook].Quantity = quantity;
+            //books[iDisplayBook].Id = bookId;
+            books[iDisplayBook].Name = name;
+            books[iDisplayBook].Author = author;
+            books[iDisplayBook].YearOfPublication = year;
+            books[iDisplayBook].UnitPrice = price;
+            books[iDisplayBook].Quantity = quantity;
             return true;
 
         }
@@ -620,11 +627,12 @@ namespace Library_Toala_Patel
             Console.WriteLine("------------------------------------------------------------------------------");
             Console.WriteLine("ID\tNAME\t\t\tAUTHOR\tYEAR\tPRICE\tQUANTITY");
             Console.WriteLine("------------------------------------------------------------------------------");
-
+            booksFound = false;
             for (int i = 0; i < ELEMENTSBOOK; i++)
             {
                 if (books[i].Author == author)
                 {
+                    booksFound = true;
                     Console.WriteLine(books[i].Id + "\t" + books[i].Name + "\t\t\t" + books[i].Author + "\t" + books[i].YearOfPublication + "\t" + books[i].UnitPrice + "\t" + books[i].Quantity);
                 }
             }
@@ -906,7 +914,7 @@ namespace Library_Toala_Patel
                 Console.WriteLine($"    Sold {vquantity} copies of {books[iDisplayBook].Name} for ${revenue}");
                 Console.WriteLine($"    Remaining Quantity of {books[iDisplayBook].Name}: {books[iDisplayBook].Quantity}");
 
-                // we can add code here to update sales records in Invoice Array
+                // You can add code here to update sales records in Invoice Array
                 CreateInvoice(clientID, bookID, vquantity, books[iDisplayBook].UnitPrice, revenue);
 
             }
