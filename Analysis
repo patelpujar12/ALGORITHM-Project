@@ -1,0 +1,86 @@
+Input
+
+Structure Employee (1 employee- default 1 with ID: 111111, pass: tester)
+          int Id
+          string Name - Display Name - Sign Up
+           string Pass
+Structure Clients (10 clients -default 1)
+          int Id
+          string Name - Display Name - Sign Up
+           string Pass
+Structure Books (100 books- default 10)
+          int Id
+          string Name
+          string Author
+          int Year
+          double Price
+           int Quantity
+Structure Invoice
+          int Id
+          int Client Id
+          int Book Id
+          int Quantity
+          double Price
+           double Total
+          double TotalInvoice
+ 
+int MenuOption
+ 
+ 
+
+
+ 
+Procedure
+Main Menu: There are 3 options (3: Exit)
+             1: You must request Id Client and password.
+                            If it is correct, then you show Menu Client.
+             2: You must request Id Employee and password.
+If it is correct, then you show Menu Client.
+Client Menu
+Books Available
+Show Array books where quantity >0
+The purchases made by themselves.
+Show Array Invoices by Client Id
+Sign Out
+Retorn Main Menu
+ 
+Employee Menu
+Create a client
+Add on structure client (array).
+Validate pass min 6 - max 10.
+Modify one client by ID
+Read Client Id (Validate if exists)
+Modify Name, password
+Display all the clients
+Show all clients
+Create a book
+Add on structure book (array )
+Modify one book by ID
+Read Book Id (Validate if exists)
+Modify Name, price, quantity – NO ID
+Display all the books
+Show all the books – Book Structure (Array)
+Display all the books by Author
+Read Author
+Show all the books by Author -  Book Structure (Array)
+Sell a book
+Read Client Id (Validate if exists)
+Read Book Id (Validate if exists)
+Read Quantity to sell - Validate book stock (quantity >0).
+Calculate the Total Price per book (quantity * unit price).
+Calculate the Total Invoice
+Show Invoice
+Display all the books sold
+Display total of sales
+Sign Out
+Return to the main menu
+ 
+Function:
+Exists Client
+Exists Client Password
+Exists Employee Password
+Exists Employee Password
+Validate Insert Option
+Parameter: maximum option number
+Validate Client pass min 6 - max 10.
+
